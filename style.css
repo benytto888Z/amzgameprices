@@ -1,0 +1,928 @@
+:root {
+    color-scheme: dark;
+    --bg: #070b17;
+    --panel: #101829;
+    --line: #26344b;
+    --ink: #f3f5fb;
+    --muted: #9daac1;
+    --gold: #f4c769;
+    --mint: #56dfc9
+}
+
+* {
+    box-sizing: border-box
+}
+
+body {
+    margin: 0;
+    background: radial-gradient(ellipse at 75% -10%, #243044 0, transparent 45%), var(--bg);
+    font-family: Inter, Segoe UI, Arial, sans-serif;
+    color: var(--ink);
+    line-height: 1.45
+}
+
+a {
+    color: inherit
+}
+
+.wrap {
+    max-width: 1450px;
+    margin: auto;
+    padding: 30px 32px 60px
+}
+
+.top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 22px
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px
+}
+
+.mark {
+    width: 42px;
+    height: 42px;
+    border: 1px solid #c69a4c;
+    color: var(--gold);
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    font-weight: 800;
+    font-size: 20px
+}
+
+.brand strong {
+    display: block;
+    letter-spacing: .12em;
+    font-size: 12px
+}
+
+.brand span {
+    color: var(--muted);
+    font-size: 11px;
+    letter-spacing: .08em
+}
+
+.top a {
+    font-size: 13px;
+    color: #bdc8d7;
+    text-decoration: none
+}
+
+.intro {
+    padding: 52px 0 32px;
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 24px
+}
+
+.eyebrow {
+    color: var(--gold);
+    font-weight: 800;
+    letter-spacing: .15em;
+    font-size: 11px;
+    text-transform: uppercase
+}
+
+.eyebrow:before {
+    content: '';
+    display: inline-block;
+    background: var(--gold);
+    width: 26px;
+    height: 2px;
+    vertical-align: middle;
+    margin-right: 10px
+}
+
+h1 {
+    font-size: clamp(30px, 4vw, 48px);
+    line-height: 1.08;
+    letter-spacing: -.04em;
+    margin: 14px 0 13px
+}
+
+.lead {
+    color: var(--muted);
+    font-size: 15px;
+    margin: 0;
+    max-width: 760px
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    flex-shrink: 0
+}
+
+button {
+    font: inherit;
+    cursor: pointer;
+    border-radius: 9px;
+    padding: 12px 17px;
+    font-weight: 700;
+    font-size: 13px
+}
+
+.print-btn {
+    background: var(--gold);
+    color: #1c1a15;
+    border: 1px solid var(--gold)
+}
+
+.print-btn:hover {
+    background: #ffdd95
+}
+
+.reset-btn {
+    background: #151e30;
+    color: #d9e0ed;
+    border: 1px solid #34435a
+}
+
+.reset-btn:hover {
+    border-color: var(--gold)
+}
+
+.summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 23px
+}
+
+.tile {
+    background: linear-gradient(115deg, #151e30, #101827);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 16px 20px
+}
+
+.tile small {
+    display: block;
+    color: var(--muted);
+    font-size: 11px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    font-weight: 700
+}
+
+.tile b {
+    display: block;
+    margin-top: 5px;
+    font-size: 19px;
+    color: var(--ink)
+}
+
+.tile b.accent {
+    color: var(--mint)
+}
+
+.panel {
+    background: #101726;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 12px 42px #0003
+}
+
+.panelhead {
+    padding: 22px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px
+}
+
+.panelhead h2 {
+    font-size: 17px;
+    margin: 0 0 4px
+}
+
+.panelhead p {
+    font-size: 12px;
+    color: var(--muted);
+    margin: 0
+}
+
+.badge {
+    border: 1px solid #355447;
+    background: #182e29;
+    color: #9ce8c9;
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    white-space: nowrap
+}
+
+.tablewrap {
+    overflow-x: auto
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 900px;
+    table-layout: fixed
+}
+
+th {
+    text-align: left;
+    background: #1a2437;
+    color: #acb9ce;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .09em;
+    padding: 15px 16px
+}
+
+th:first-child {
+    padding-left: 24px;
+    width: 23%
+}
+
+th:nth-child(2) {
+    width: 16%
+}
+
+th:nth-child(3) {
+    width: 19%
+}
+
+th:nth-child(4) {
+    width: 25%
+}
+
+th:nth-child(5) {
+    width: 17%
+}
+
+td {
+    border-top: 1px solid #253047;
+    padding: 12px 16px;
+    font-size: 13px;
+    vertical-align: middle
+}
+
+td:first-child {
+    padding-left: 24px
+}
+
+tr:hover td {
+    background: #ffffff05
+}
+
+.game {
+    display: flex;
+    gap: 12px;
+    align-items: center
+}
+
+.number {
+    font-size: 11px;
+    color: #697c9b;
+    font-weight: 700
+}
+
+.game strong {
+    display: block;
+    font-size: 13px
+}
+
+.game-sub {
+    display: block;
+    color: #7787a3;
+    letter-spacing: .08em;
+    font-size: 9px;
+    margin-top: 4px
+}
+
+.unit {
+    font-size: 10px;
+    color: #8fa0b7;
+    white-space: nowrap
+}
+
+.import-price {
+    font-weight: 650;
+    color: #d4dce8;
+    white-space: nowrap
+}
+
+.not-available {
+    color: #8794a8;
+    font-weight: 400;
+    font-size: 12px
+}
+
+.price-field {
+    display: flex;
+    align-items: center;
+    border: 1px solid #42516a;
+    border-radius: 7px;
+    background: #19263a;
+    max-width: 195px;
+    overflow: hidden
+}
+
+.price-field:focus-within {
+    outline: 2px solid var(--mint)
+}
+
+input {
+    font: inherit;
+    color: #fff;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    width: 100%;
+    min-width: 0;
+    padding: 10px 4px 10px 9px;
+    font-weight: 700
+}
+
+.price-field span {
+    font-size: 10px;
+    color: #a6b6c9;
+    padding-right: 8px
+}
+
+.monthly {
+    color: var(--mint);
+    font-weight: 750;
+    white-space: nowrap
+}
+
+.monthly small {
+    display: block;
+    color: #9badc2;
+    font-weight: 400;
+    font-size: 10px;
+    margin-top: 3px
+}
+
+.photo {
+    height: 75px;
+    width: 115px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #1c2637
+}
+
+.photo img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    display: block
+}
+
+.missing {
+    height: 100%;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    color: #8795aa;
+    font-size: 11px;
+    line-height: 1.25
+}
+
+.notes {
+    padding: 21px 24px;
+    border-top: 1px solid var(--line);
+    font-size: 12px;
+    color: #aab8cc
+}
+
+.notes p {
+    margin: 5px 0
+}
+
+.notes strong {
+    color: #e3e9f3
+}
+
+.sources {
+    font-size: 12px;
+    color: #9aa8bc;
+    margin: 20px 2px
+}
+
+.sources a {
+    color: #e9c46a
+}
+
+.print-price,
+.print-only {
+    display: none
+}
+
+@media(max-width:750px) {
+    .wrap {
+        padding: 20px 16px 40px
+    }
+
+    .intro {
+        padding: 38px 0 25px;
+        display: block
+    }
+
+    .actions {
+        margin-top: 20px
+    }
+
+    .summary {
+        grid-template-columns: 1fr 1fr
+    }
+
+    .summary .tile:last-child {
+        grid-column: 1/-1
+    }
+
+    .panelhead {
+        align-items: start
+    }
+
+    .top a {
+        font-size: 11px
+    }
+}
+
+@page {
+    size: A4 landscape;
+    margin: 12mm
+}
+
+@media print {
+    * {
+        color-adjust: exact;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact
+    }
+
+    body {
+        color: #142034;
+        background: white;
+        font-size: 10px
+    }
+
+    .wrap {
+        padding: 0;
+        max-width: none
+    }
+
+    .top {
+        padding-bottom: 6px;
+        border-color: #bbc4ce
+    }
+
+    .top a,
+    .actions,
+    .price-field,
+    .badge {
+        display: none
+    }
+
+    .mark {
+        border-color: #b68c3f;
+        color: #805a15;
+        width: 30px;
+        height: 30px
+    }
+
+    .brand span {
+        color: #5d6a7e
+    }
+
+    .intro {
+        padding: 12px 0;
+        display: block
+    }
+
+    h1 {
+        font-size: 24px;
+        margin: 5px 0
+    }
+
+    .eyebrow {
+        color: #805a15
+    }
+
+    .lead {
+        font-size: 10px;
+        color: #536174
+    }
+
+    .summary {
+        margin-bottom: 9px;
+        gap: 6px
+    }
+
+    .tile {
+        padding: 6px 10px;
+        border-color: #d9dfe6;
+        background: #f5f7fa
+    }
+
+    .tile small {
+        color: #526276;
+        font-size: 8px
+    }
+
+    .tile b,
+    .tile b.accent {
+        font-size: 12px;
+        color: #17253a
+    }
+
+    .panel {
+        border: 1px solid #d4dce5;
+        border-radius: 0;
+        background: white;
+        box-shadow: none;
+        overflow: visible
+    }
+
+    .panelhead {
+        padding: 8px 10px
+    }
+
+    .panelhead h2 {
+        font-size: 13px
+    }
+
+    .panelhead p {
+        color: #536174;
+        font-size: 9px
+    }
+
+    .tablewrap {
+        overflow: visible
+    }
+
+    table {
+        min-width: 0;
+        font-size: 9px
+    }
+
+    thead {
+        display: table-header-group
+    }
+
+    th {
+        background: #e6ebf2;
+        color: #26364b;
+        padding: 7px 8px;
+        font-size: 8px
+    }
+
+    th:first-child,
+    td:first-child {
+        padding-left: 10px
+    }
+
+    td {
+        border-color: #dce2e9;
+        padding: 5px 8px;
+        font-size: 9px
+    }
+
+    tr {
+        break-inside: avoid;
+        page-break-inside: avoid
+    }
+
+    .game {
+        gap: 6px
+    }
+
+    .game strong {
+        font-size: 9px
+    }
+
+    .game-sub {
+        display: none
+    }
+
+    .number {
+        font-size: 8px;
+        color: #687688
+    }
+
+    .photo {
+        height: 48px;
+        width: 72px;
+        background: #f0f2f5
+    }
+
+    .missing {
+        color: #697587;
+        font-size: 8px
+    }
+
+    .unit,
+    .monthly small {
+        color: #586b7c;
+        font-size: 8px
+    }
+
+    .monthly {
+        color: #087d6f
+    }
+
+    .import-price {
+        color: #243247
+    }
+
+    .not-available {
+        color: #536174;
+        font-size: 9px
+    }
+
+    .print-price {
+        display: inline;
+        color: #172536;
+        font-weight: 700
+    }
+
+    .notes {
+        border-color: #dce2e9;
+        color: #4d5b6a;
+        padding: 8px 10px;
+        font-size: 9px
+    }
+
+    .notes strong {
+        color: #1b2a3e
+    }
+
+    .sources {
+        font-size: 8px;
+        color: #536174;
+        margin-top: 8px
+    }
+
+    .sources a {
+        color: #253d58;
+        text-decoration: none
+    }
+
+    .print-only {
+        display: inline
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .tablewrap {
+        overflow: visible
+    }
+
+    table,
+    thead,
+    tbody,
+    tr,
+    td {
+        display: block;
+        min-width: 0;
+        width: auto
+    }
+
+    thead {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap
+    }
+
+    tbody {
+        padding: 12px;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px
+    }
+
+    tbody tr {
+        position: relative;
+        background: #151f30;
+        border: 1px solid #30405a;
+        border-radius: 12px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column
+    }
+
+    td,
+    td:first-child {
+        border: 0;
+        border-top: 1px solid #2b394e;
+        padding: 11px 13px;
+        white-space: normal
+    }
+
+    td:not(:first-child):not(:last-child)::before {
+        content: attr(data-label);
+        display: block;
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: .06em;
+        color: #91a2b9;
+        font-weight: 700;
+        margin-bottom: 5px
+    }
+
+    td:first-child {
+        border: 0;
+        order: -2;
+        min-height: 64px
+    }
+
+    .game strong {
+        font-size: 14px
+    }
+
+    td:last-child {
+        order: -1;
+        padding: 0;
+        border: 0
+    }
+
+    .photo {
+        width: 100%;
+        height: 150px;
+        border-radius: 0
+    }
+
+    .price-field {
+        max-width: none
+    }
+
+    .monthly small {
+        margin-top: 4px
+    }
+
+    .panelhead {
+        padding: 18px
+    }
+
+    .notes {
+        padding: 16px
+    }
+}
+
+@media screen and (max-width: 560px) {
+    tbody {
+        grid-template-columns: 1fr
+    }
+
+    .photo {
+        height: 190px
+    }
+
+    .summary {
+        grid-template-columns: 1fr 1fr
+    }
+
+    .summary .tile:last-child {
+        grid-column: 1/-1
+    }
+
+    .top a {
+        text-align: right;
+        max-width: 145px
+    }
+
+    .intro h1 {
+        font-size: 34px
+    }
+}
+
+.status {
+    margin: 0 24px 16px;
+    color: #ffb58e;
+    font-size: 13px
+}
+
+.status:empty {
+    display: none
+}
+
+@media print {
+    .status {
+        display: none
+    }
+}
+
+[hidden] {
+    display: none !important
+}
+
+.save-btn {
+    background: #56dfc9;
+    color: #102b27;
+    border: 1px solid #56dfc9
+}
+
+.locked-local {
+    font-weight: 750;
+    color: #e9f1fc
+}
+
+.detail {
+    display: block;
+    color: #9badc2;
+    font-size: 10px;
+    margin-top: 3px;
+    font-weight: 400;
+    white-space: normal
+}
+
+.monthly {
+    white-space: normal
+}
+
+.monthly strong {
+    white-space: nowrap
+}
+
+.status.ok {
+    color: #8de6c6
+}
+
+dialog {
+    max-width: min(420px, 92vw);
+    width: 100%;
+    background: #121c2d;
+    color: #f3f5fb;
+    border: 1px solid #40506a;
+    border-radius: 14px;
+    padding: 24px
+}
+
+dialog::backdrop {
+    background: #050812d9
+}
+
+dialog h2 {
+    margin: 0;
+    font-size: 20px
+}
+
+dialog p {
+    font-size: 13px;
+    color: #aab7cb
+}
+
+dialog label {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    margin: 18px 0 7px
+}
+
+dialog input {
+    border: 1px solid #52627a;
+    border-radius: 8px;
+    background: #1a273b;
+    padding: 12px
+}
+
+dialog #loginError {
+    color: #ffb58e
+}
+
+.dialog-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+    margin-top: 20px
+}
+
+@media print {
+    .locked-local {
+        color: #172536
+    }
+
+    .detail {
+        color: #536174;
+        font-size: 8px
+    }
+
+    dialog {
+        display: none
+    }
+}
+
+@media print {
+    .locked-local {
+        display: none !important
+    }
+}

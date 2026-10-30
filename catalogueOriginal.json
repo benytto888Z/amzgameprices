@@ -1,0 +1,153 @@
+{
+  "devise": "FCFA",
+  "financement": {
+    "majoration_pourcent": 10,
+    "acompte": {
+      "numerateur": 1,
+      "denominateur": 3
+    },
+    "nombre_mois": 12
+  },
+  "equipements": [
+    {
+      "nom": "Basket Tournament",
+      "prix_import_fcfa": 18112500,
+      "prix_local_fcfa": 8280000,
+      "image": "images/basket-tournament.jpg",
+      "source_image": "https://prestige.amzelitegames.com/images/basket-tournament.jpg"
+    },
+    {
+      "nom": "Piste de Bowling",
+      "prix_import_fcfa": 13167500,
+      "prix_local_fcfa": 6900000,
+      "image": "images/piste-bowling.jpg",
+      "source_image": "https://prestige.amzelitegames.com/images/piste-bowling.jpg"
+    },
+    {
+      "nom": "Golf Intérieur Interactif",
+      "prix_import_fcfa": 8255000,
+      "prix_local_fcfa": 4405000,
+      "image": "images/golf-interieur.jpg",
+      "source_image": "https://prestige.amzelitegames.com/images/golf-interieur.jpg"
+    },
+    {
+      "nom": "Connect Four Géant",
+      "prix_import_fcfa": 19500000,
+      "prix_local_fcfa": 8050000,
+      "image": "images/connect-four.jpg",
+      "source_image": "https://prestige.amzelitegames.com/images/connect-four.jpg"
+    },
+    {
+      "nom": "Electronic Shuffle",
+      "prix_import_fcfa": 17250000,
+      "prix_local_fcfa": 8050000,
+      "image": "images/electronic-shuffle.jpg",
+      "source_image": "https://prestige.amzelitegames.com/images/electronic-shuffle.jpg"
+    },
+    {
+      "nom": "Table Électrique Bowling",
+      "prix_import_fcfa": null,
+      "prix_local_fcfa": 9200000,
+      "image": "images/table-electrique-bowling.jpg",
+      "source_image": "https://prestige.amzelitegames.com/images/table-electrique-bowling.jpg"
+    },
+    {
+      "nom": "Arcade Basket",
+      "prix_import_fcfa": 3450000,
+      "prix_local_fcfa": 2070000,
+      "image": "images/arcade-basket.jpg",
+      "source_image": "https://prestige.amzelitegames.com/images/arcade-basket.jpg"
+    },
+    {
+      "nom": "VoltRush / LOYINE",
+      "prix_import_fcfa": null,
+      "prix_local_fcfa": 2300000,
+      "image": "images/voltrush-loyine2.jpg",
+      "source_image": "https://prestige.amzelitegames.com/images/voltrush-loyine2.jpg"
+    },
+    {
+      "nom": "Enigma Room",
+      "prix_import_fcfa": 22000000,
+      "prix_local_fcfa": 12000000,
+      "image": "images/enigma-room.jpg",
+      "source_image": "https://prestige.amzelitegames.com/images/enigma-room.jpg"
+    },
+    {
+      "nom": "Wall Crazy Light",
+      "prix_import_fcfa": null,
+      "prix_local_fcfa": 6555000,
+      "image": "images/wall-crazy-light.jpg",
+      "source_image": "https://prestige.amzelitegames.com/images/wall-crazy-light.jpg"
+    },
+    {
+      "nom": "Crazy Light",
+      "prix_import_fcfa": 2700000,
+      "prix_local_fcfa": 1725000,
+      "image": "images/crazy-light.jpg",
+      "source_image": "https://prestige.amzelitegames.com/images/crazy-light.jpg"
+    },
+    {
+      "nom": "AMZ Classic Hockey",
+      "prix_import_fcfa": null,
+      "prix_local_fcfa": 805000,
+      "image": "images/amz-classic-hockey.jpg",
+      "source_image": "https://prestige.amzelitegames.com/images/amz-classic-hockey.jpg"
+    },
+    {
+      "nom": "Crazy Pong",
+      "prix_import_fcfa": null,
+      "prix_local_fcfa": 862500,
+      "image": "images/crazy-pong.jpg",
+      "source_image": "https://amzelitegames.com/assets/imgAMZ/webp/products/crazypong02.webp"
+    },
+    {
+      "nom": "Skyline Racer",
+      "prix_import_fcfa": null,
+      "prix_local_fcfa": 977500,
+      "image": null,
+      "source_image": null
+    },
+    {
+      "nom": "Stick Challenge",
+      "prix_import_fcfa": null,
+      "prix_local_fcfa": 707250,
+      "image": "images/stick-challenge.jpg",
+      "source_image": "https://prestige.amzelitegames.com/images/stick-challenge.jpg"
+    },
+    {
+      "nom": "Ninja Stick",
+      "prix_import_fcfa": null,
+      "prix_local_fcfa": 600000,
+      "image": "images/ninja-stick.jpg",
+      "source_image": "https://amzelitegames.com/assets/imgAMZ/carousel/ninjastick03.jpg"
+    },
+    {
+      "nom": "Neurona Arena VIP",
+      "prix_import_fcfa": 19000000,
+      "prix_local_fcfa": 15000000,
+      "image": "images/neurona-arena-vip.jpg",
+      "source_image": "https://prestige.amzelitegames.com/images/neurona-arena-vip.jpg"
+    },
+    {
+      "nom": "Neurona Arena Portable",
+      "prix_import_fcfa": null,
+      "prix_local_fcfa": 575000,
+      "image": null,
+      "source_image": null
+    },
+    {
+      "nom": "Reflex Arena Portable",
+      "prix_import_fcfa": null,
+      "prix_local_fcfa": 402500,
+      "image": null,
+      "source_image": null
+    },
+    {
+      "nom": "VoltRush Portable",
+      "prix_import_fcfa": null,
+      "prix_local_fcfa": 500000,
+      "image": null,
+      "source_image": null
+    } 
+  ]
+}
