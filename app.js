@@ -47,7 +47,7 @@ async function init() {
     document.getElementById('simulation').textContent = `${fmt(f.majoration_pourcent)} % · acompte ${f.acompte.numerateur}/${f.acompte.denominateur}`;
     document.getElementById('calculation-note').innerHTML = `<strong>Simulation indicative :</strong> prix local majoré de ${fmt(f.majoration_pourcent)} %, puis acompte de ${f.acompte.numerateur}/${f.acompte.denominateur} du total majoré ; le solde est réparti sur 12 mois.`;
     render(catalog.equipements);
-  } catch (err) { document.getElementById('count').textContent = 'Catalogue indisponible'; message('Impossible de charger le catalogue. Démarrez serveur.py (voir LISEZ-MOI.md). Détail : ' + err.message) }
+  } catch (err) { document.getElementById('count').textContent = 'Catalogue indisponible'; message('Impossible de charger le catalogue. Vérifiez le déploiement Netlify (voir LISEZ-MOI.md). Détail : ' + err.message) }
 }
 const dialog = document.getElementById('loginDialog'), loginForm = document.getElementById('loginForm');
 adminBtn.addEventListener('click', async () => {
@@ -66,7 +66,7 @@ saveBtn.addEventListener('click', async () => {
   const prices = Array.from(document.querySelectorAll('input[data-initial]'), i => Number(i.value)); saveBtn.disabled = true;
   try {
     const r = await fetch('/api/prix', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token }, body: JSON.stringify({ version, prices }) }); const j = await r.json(); if (!r.ok) { if (r.status === 401) { token = ''; isAdmin = false; syncAdmin() } throw Error(j.error || 'Enregistrement impossible.') }
-    version = j.version; prices.forEach((p, i) => catalog.equipements[i].prix_local_fcfa = p); render(catalog.equipements); message('Prix enregistrés dans catalogue.json.', true);
+    version = j.version; prices.forEach((p, i) => catalog.equipements[i].prix_local_fcfa = p); render(catalog.equipements); message('Prix enregistrés sur Netlify.', true);
   } catch (err) { message(err.message) } finally { saveBtn.disabled = false }
 });
 document.getElementById('export').addEventListener('click', () => {

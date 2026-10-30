@@ -1,66 +1,60 @@
-# Catalogue des équipements AMZ
+# Catalogue AMZ — version Netlify
 
-## Contenu
+Cette version est basée sur le dépôt `benytto888Z/amzgameprices`, commit `1c6d19a` : 17 jeux, vos images locales et une majoration de 20 % au départ. Les prix affichés et le financement sont chargés par une Netlify Function. La sauvegarde des prix utilise Netlify Blobs. Le serveur Python de l’ancienne version n’est plus utilisé.
 
-- `index.html`, `style.css`, `app.js` : interface responsive (mobile, tablette, ordinateur) et impression.
-- `catalogue.json` : équipements, prix, chemins des images et paramètres de financement.
-- `images/` : photos locales des jeux retrouvés.
-- `serveur.py` : serveur Python et API qui vérifie le mot de passe et enregistre les prix.
+## 1. Mettre à jour GitHub
 
-## Démarrage local et mot de passe administrateur
-
-Installer Python 3. Ouvrir un terminal dans le dossier `catalogue-amz` et choisir un mot de passe privé d'au moins 12 caractères. À chaque démarrage, définir la variable d’environnement puis lancer le serveur :
-
-**Windows PowerShell**
-
-```powershell
-$env:AMZ_ADMIN_PASSWORD = 'Choisissez-un-mot-de-passe-prive'
-python serveur.py
-```
-
-Si nécessaire, remplacer `python` par `py`.
-
-**macOS / Linux**
+Décompresser l’archive et copier son contenu à la racine de votre dépôt Git local, en remplaçant les fichiers homonymes. Supprimer de votre dépôt l’ancien `serveur.py` : il ne convient pas à Netlify. Vérifier les modifications puis les publier sur votre branche :
 
 ```bash
-export AMZ_ADMIN_PASSWORD='Choisissez-un-mot-de-passe-prive'
-python3 serveur.py
+git status
+git add -A
+git commit -m "Adaptation pour Netlify"
+git push origin main
 ```
 
-Ouvrir `http://127.0.0.1:8000/` dans le navigateur. Arrêter avec Ctrl+C. Le mot de passe n’est pas dans le HTML, le JavaScript ou le JSON ; il est vérifié côté serveur. Si la variable n’est pas définie ou contient moins de 12 caractères, la consultation fonctionne mais la connexion administrateur est désactivée. Ne communiquez pas votre vrai mot de passe.
+Ne pas committer `node_modules`, `public`, `.netlify`, les secrets ou les variables d’environnement. Le fichier `.gitignore` les exclut. Le projet n’a pas été publié automatiquement sur votre GitHub.
 
-Le bouton « Accès administrateur » active la modification des prix locaux. Cliquer sur « Enregistrer les prix » pour écrire dans `catalogue.json`. La session est gardée uniquement en mémoire dans l’onglet : une actualisation ou un redémarrage du serveur nécessite une reconnexion. Le bouton de déconnexion annule les changements non enregistrés. La détection de conflit évite d’écraser un JSON modifié depuis le chargement ; en cas de conflit, recharger la page.
+## 2. Créer le site sur Netlify
 
-**Important :** ne pas lancer avec `python -m http.server` ni ouvrir le HTML par double-clic : l’API d’authentification et d’enregistrement est nécessaire. Le processus Python doit avoir les droits d’écriture sur le dossier et sur `catalogue.json`. Cette application n'est pas synchronisée avec le business plan en ligne.
+1. Dans Netlify, choisir **Add new site / Import an existing project**, puis connecter GitHub et sélectionner `benytto888Z/amzgameprices` et la branche `main`.
+2. Le fichier `netlify.toml` fournit les réglages : commande `npm run build`, dossier publié `public`, dossier Functions `netlify/functions`, Node 22. Vérifier ces réglages si Netlify vous les demande.
+3. Dans **Site configuration → Environment variables**, créer la variable **`AMZ_ADMIN_PASSWORD`** avec un mot de passe privé, long et unique (12 caractères minimum, 20 ou plus recommandés). Si les scopes sont proposés, inclure **Functions**. Ne jamais écrire cette valeur dans GitHub ou dans `netlify.toml`.
+4. Lancer le déploiement, ou relancer un déploiement après ajout ou modification de la variable. Ouvrir l’URL HTTPS Netlify.
+5. Vérifier les 17 jeux et les images, puis se connecter avec le mot de passe choisi, modifier un prix, enregistrer, recharger et vérifier la persistance. Remettre le prix souhaité à la fin du test.
 
-### Sécurité et hébergement
+Si le site s’affiche mais que l’API ne fonctionne pas, consulter **Functions → Logs**, les logs du build et la disponibilité/quota de Netlify Blobs. Le mot de passe absent ou trop court désactive l’administration, sans révéler un mot de passe par défaut. Un changement de mot de passe invalide les sessions précédentes après redéploiement.
 
-Par défaut, le serveur écoute uniquement sur `127.0.0.1` pour une utilisation sur l’ordinateur local. Le mot de passe est stocké dans une variable d’environnement du serveur, et non dans le catalogue ; les requêtes de sauvegarde sont authentifiées. Un utilisateur ayant accès au système de fichiers ou aux variables d’environnement peut néanmoins modifier les données ou accéder au mot de passe.
+## 3. Comment les données sont conservées
 
-Le serveur Python utilise HTTP sans chiffrement et est destiné à un usage local. **Ne pas l’exposer directement sur Internet ou sur un réseau non fiable.** Pour une mise en production, utiliser un serveur/proxy HTTPS configuré de façon sécurisée, un hébergement avec backend Python et contrôle d’accès, et une gestion sécurisée des secrets ; prévoir aussi sauvegardes et protection contre les tentatives de connexion. Un hébergement purement statique ne peut pas garantir le verrouillage ni enregistrer les prix. L'utilisation d'un service comme `python -m http.server` désactive la protection et l'enregistrement.
+- **`catalogue.json` sur GitHub** est la source de base : liste des jeux, photos locales, prix initiaux et paramètres de financement. Modifier ce fichier puis envoyer le commit pour effectuer un nouveau déploiement.
+- Les changements de prix effectués depuis l’interface administrateur sont enregistrés dans **Netlify Blobs**, et non dans `catalogue.json` ni dans GitHub. Ils persistent d’un déploiement à l’autre et sont partagés entre visiteurs.
+- Un prix enregistré par l’administrateur **a priorité** sur le prix du JSON pour un jeu portant le même nom. Pour revenir au prix du JSON pour un jeu, saisir exactement ce prix en mode administrateur et enregistrer. Le nom sert d’identifiant : après renommage d’un jeu, sa précédente surcharge de prix ne lui sera plus associée. Ne pas utiliser deux noms identiques.
+- Attention : les stores Blobs utilisés ici sont rattachés au site Netlify et partagés entre les contextes de déploiement, y compris les aperçus de branche. Évitez de tester des changements administrateur sur un aperçu du site de production ; utilisez plutôt un site Netlify séparé pour les tests. Prévoyez des sauvegardes des données.
+- La sauvegarde refuse une version périmée pour éviter d’écraser simultanément les changements d’un autre administrateur. Recharger la page en cas de conflit.
 
-## Modifier les paramètres de financement
+## 4. Personnaliser le financement
 
-Dans `catalogue.json`, modifier uniquement les valeurs de `financement` :
+Dans `catalogue.json`, modifier les valeurs de :
 
 ```json
 "financement": {
-  "majoration_pourcent": 10,
+  "majoration_pourcent": 20,
   "acompte": { "numerateur": 1, "denominateur": 3 },
   "nombre_mois": 12
 }
 ```
 
-Le prix total est le prix local majoré de `majoration_pourcent` pour cent, arrondi au FCFA le plus proche. L’acompte est la fraction `numerateur / denominateur` de ce total, arrondie au FCFA le plus proche. Le solde est réparti sur 12 mois. Les 11 premières mensualités sont arrondies à l’entier inférieur et le solde restant constitue la 12ᵉ mensualité. Ainsi acompte + 12 mensualités = prix total majoré exactement. Exemple : pour un prix local de 900 000 FCFA, majoration 10 % : total 990 000 FCFA, acompte 330 000 FCFA, puis 12 × 55 000 FCFA.
+Envoyer le JSON modifié sur GitHub pour redéployer. Le total est le prix local majoré, arrondi au FCFA le plus proche ; l’acompte est la fraction indiquée du total, lui aussi arrondi. Le reste est réparti en 12 échéances : 11 arrondies à l’entier inférieur et le solde exact au dernier mois. `majoration_pourcent` doit être entre 0 et 1000 ; les termes de la fraction sont des entiers avec `0 ≤ numerateur ≤ denominateur` et `1 ≤ denominateur ≤ 1 000 000`. La durée est fixée à 12 mois. Ce calcul reste indicatif et doit être confirmé auprès d’AMZ.
 
-`majoration_pourcent` doit être un nombre entre 0 et 1000 ; numérateur et dénominateur sont des entiers, avec `0 ≤ numerateur ≤ denominateur` et un dénominateur entre 1 et 1 000 000. La durée est fixée à 12 mois dans cette version. Après modification, actualiser la page. Cette simulation n’est pas une offre de financement ; confirmer les conditions auprès d’AMZ.
+## 5. Entretien et sécurité
 
-## Modifier le catalogue et les images
+Les photos doivent être dans `images/` et référencées par un chemin relatif `images/nom.jpg`, `.jpeg`, `.png` ou `.webp`. Garder des noms de jeux uniques et un JSON valide. Les prix import non renseignés sont représentés par `null`.
 
-Chaque objet de `equipements` comporte : `nom`, `prix_import_fcfa` (entier ou `null`), `prix_local_fcfa` (entier), `image` (chemin relatif tel que `images/mon-jeu.jpg`, ou `null`) et `source_image` (adresse documentaire seulement). Pour ajouter un jeu, ajouter un objet et placer l’image dans `images/`. Formats acceptés : JPG, JPEG, PNG et WebP. Veiller à conserver un JSON valide. Les prix locaux se modifient aussi depuis l’interface administrateur.
+La connexion est vérifiée côté Function ; le mot de passe n’est pas intégré au code du navigateur. Une session aléatoire est limitée à 8 heures et une limitation simple des tentatives est appliquée par IP. Utiliser HTTPS, un mot de passe fort, des restrictions d’accès et/ou un dispositif MFA/WAF adapté à vos besoins : il ne s’agit pas d’un système d’identités multi-utilisateurs ni d’une garantie contre toutes les attaques. Ne partagez pas le mot de passe dans le dépôt. Consulter les coûts et limites de votre offre Netlify, notamment Functions et Blobs.
 
-Quatre images manquent dans les sources consultées : Skyline Racer, Neurona Arena Portable, Reflex Arena Portable et VoltRush Portable. Ajouter les images correspondantes et renseigner leur chemin quand elles seront disponibles.
+Commandes de vérification locales (Node.js requis) : `npm ci`, `npm run build`, `npm test`. Les tests utilisent un stockage simulé ; ils ne remplacent pas un test réel sur Netlify. Pour tester les Functions et Blobs localement, utiliser l’environnement de développement Netlify configuré pour votre site, plutôt qu’un simple serveur statique.
 
 ## PDF
 
-Cliquer sur « Exporter en PDF », puis choisir « Enregistrer en PDF » dans le navigateur. Mise en page A4 paysage. En mode administrateur, l'export reflète les valeurs affichées, y compris les changements non enregistrés.
+Utiliser « Exporter en PDF », puis choisir « Enregistrer en PDF » dans le navigateur. L’export en mode administrateur reflète les valeurs affichées, y compris celles non encore enregistrées.

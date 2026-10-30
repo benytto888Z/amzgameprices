@@ -1,0 +1,7 @@
+node_modules/
+.netlify/
+public/
+netlify/lib/seed.mjs
+.env
+.env.*
+!.env.example

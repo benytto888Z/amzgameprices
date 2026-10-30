@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Équipements du centre | PRESTIGE GAME CENTER</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+
+<body>
+  <div class="wrap">
+    <header class="top">
+      <div class="brand">
+        <div class="mark">P</div>
+        <div><strong>PRESTIGE GAME CENTER</strong><span>CATALOGUE · AMZ</span></div>
+      </div>
+      <a href="https://prestige.amzelitegames.com/business-plan.html" target="_blank" rel="noopener">← Voir le business
+        plan d’origine</a>
+    </header>
+    <main>
+      <section class="intro">
+        <div>
+          <div class="eyebrow">Dossier d’équipement · Cotonou</div>
+          <h1>Les jeux du centre<span style="color:#f4c769">.</span></h1>
+          <p class="lead">Catalogue AMZ : comparez les prix d’importation et les prix locaux, et visualisez une
+            estimation des mensualités sur 12 mois.</p>
+        </div>
+        <div class="actions"><button class="reset-btn" id="admin" type="button">🔒 Accès administrateur</button><button
+            class="reset-btn" id="reset" type="button" hidden>Annuler les modifications</button><button class="save-btn"
+            id="save" type="button" hidden>Enregistrer les prix</button><button class="print-btn" id="export"
+            type="button">↓ &nbsp;Exporter en PDF</button></div>
+      </section>
+      <section class="summary" aria-label="Repères du catalogue">
+        <div class="tile"><small>Catalogue</small><b id="count">Chargement…</b></div>
+        <div class="tile"><small>Prix de référence</small><b>FCFA · par unité</b></div>
+        <div class="tile"><small>Simulation</small><b class="accent" id="simulation">Chargement…</b></div>
+      </section>
+      <section class="panel">
+        <div class="panelhead">
+          <div>
+            <h2>Équipements du centre</h2>
+            <p>Prix verrouillés · modification réservée à l’administrateur</p>
+          </div><span class="badge">● Catalogue AMZ</span>
+        </div>
+        <p class="status" id="status" role="alert"></p>
+        <div class="tablewrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Jeu</th>
+                <th>Prix import 🔒</th>
+                <th>Prix local AMZ 🔒</th>
+                <th>Prix échelonné sur 12 mois 🔒</th>
+                <th>Image du jeu</th>
+              </tr>
+            </thead>
+            <tbody id="games"></tbody>
+          </table>
+        </div>
+        <div class="notes">
+          <p id="calculation-note"><strong>Simulation indicative :</strong> chargement des paramètres de financement…
+          </p>
+          <p>Le total majoré et l’acompte sont arrondis au FCFA le plus proche. Les 11 premières mensualités sont
+            arrondies à l’entier inférieur et le solde est reporté au 12ᵉ mois. Les prix import non renseignés ne sont
+            pas assimilés à zéro.</p>
+          <p>Prix unitaires hors quantités et remise partenaire. Les prix enregistrés modifient le JSON local, pas le
+            business plan en ligne. Les images non retrouvées sont signalées. Simulation indicative, à confirmer auprès
+            d’AMZ.</p>
+        </div>
+      </section>
+      <p class="sources">Sources : <a href="https://prestige.amzelitegames.com/business-plan.html">Business plan
+          Prestige</a> · <a href="https://prestige.amzelitegames.com/">Catalogue Prestige</a> · <a
+          href="https://amzelitegames.com/products.html">Produits AMZ</a>. Données consultées le 30 octobre 2026. <span
+          class="print-only">Pour les conditions définitives, contacter AMZ.</span></p>
+    </main>
+  </div>
+  <dialog id="loginDialog">
+    <form id="loginForm">
+      <h2>Accès administrateur</h2>
+      <p>Saisissez le mot de passe configuré sur le serveur.</p><label for="password">Mot de passe</label><input
+        id="password" type="password" autocomplete="current-password" required minlength="12">
+      <p id="loginError" role="alert"></p>
+      <div class="dialog-actions"><button type="button" id="cancelLogin" class="reset-btn">Annuler</button><button
+          class="print-btn" type="submit">Se connecter</button></div>
+    </form>
+  </dialog>
+</body>
+
+</html>

@@ -1,0 +1,11 @@
+import { readFile, writeFile, rm, mkdir, cp } from 'node:fs/promises';
+const text = await readFile('catalogue.json', 'utf8');
+const data = JSON.parse(text);
+if (!Array.isArray(data.equipements)) throw new Error('catalogue.json : equipements doit être un tableau');
+if (new Set(data.equipements.map(x => x.nom)).size !== data.equipements.length) throw new Error('Chaque nom de jeu doit être unique pour conserver les prix.');
+await mkdir('netlify/functions', {recursive:true});
+await writeFile('netlify/lib/seed.mjs', `export default ${JSON.stringify(data)};\n`);
+await rm('public', {recursive:true, force:true}); await mkdir('public', {recursive:true});
+for (const file of ['index.html','style.css','app.js']) await cp(file, `public/${file}`);
+await cp('images','public/images',{recursive:true});
+console.log(`Site créé dans public/ : ${data.equipements.length} jeux.`);
