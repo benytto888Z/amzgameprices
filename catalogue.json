@@ -41,7 +41,7 @@
     {
       "nom": "Table Électrique Bowling",
       "prix_import_fcfa": null,
-      "prix_local_fcfa": 9200000,
+      "prix_local_fcfa": 5250000,
       "image": "images/table-electrique-bowling.jpg",
       "source_image": "https://prestige.amzelitegames.com/images/table-electrique-bowling.jpg"
     },
@@ -126,7 +126,7 @@
       "nom": "Triball Pro",
       "prix_import_fcfa": null,
       "prix_local_fcfa": 1800000,
-      "image": "images/triball01.png",
+      "image": "images/triball02.png",
       "source_image": "https://prestige.amzelitegames.com/images/triball-pro.jpg"
     }
 
